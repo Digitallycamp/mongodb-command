@@ -1,5 +1,11 @@
 # mongodb-command
 reference : https://www.mongodb.com/docs/mongodb-shell/run-commands/
+
+# start mongosh
+``bash
+mongosh
+```
+hit enter
 # To display the database you are using, type db:
 
 ```bash
