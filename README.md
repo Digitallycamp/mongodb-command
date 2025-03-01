@@ -2,10 +2,10 @@
 reference : https://www.mongodb.com/docs/mongodb-shell/run-commands/
 
 # start mongosh
-``bash
+```bash
 mongosh
 ```
-hit enter
+and hit enter
 # To display the database you are using, type db:
 
 ```bash
@@ -21,4 +21,14 @@ show dbs
 # To switch databases,
 ```bash
 use <database>
+```
+
+# To create a new database
+
+```bash
+use <database>
+```
+# To terminate a running command or query in mongosh, press Ctrl + C:
+```bash
+press Ctrl + C
 ```
