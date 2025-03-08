@@ -13,7 +13,6 @@ and hit enter
 ```bash
 db
 ```
-
 ## To list the databases available to the user, use the helper show dbs.
 
 ```bash
@@ -86,9 +85,22 @@ db.movies.find( { rated: { $in: [ "PG", "PG-13" ] } } )
 The  Query Selectors are categoriesed into Comparison, Logical, Element, Evaluation, Geospatial, Array , Bitwise
 We also have Projection Operators, Miscellaneous Operators
 
+- Read single document usinf findOne() method
+  ```bash
+  db.accounts.findOne( { <filed>: <value> } )
+  ````
 ## Update Documents
 The MongoDB shell provides the following methods to update documents in a collection:
+To update a document, MongoDB provides update operators, such as $set, to modify field values.
 
+To use the update operators, pass to the update methods an update document of the form:
+```bash
+{
+  <update operator>: { <field1>: <value1>, ... },
+  <update operator>: { <field2>: <value2>, ... },
+  ...
+}
+```
     -    To update a single document, use db.collection.updateOne().
     Update a Single Document
 Use the `db.collection.updateOne()` method to update the first document that matches a specified filter.
@@ -99,6 +111,28 @@ Use the `db.collection.updateOne()` method to update the first document that mat
 ```bash
 db.movies.updateOne({"title":"Fast and furios"}, {$set:{title:"Fast and furious"}})
 ```
+when using the document Id to look it up before updating , ensure you pass the id in ObjectId( )method beacuse Mongodb store _id as an ObjectId not string
+```bash
+db.movies.updateOne({_id:ObjectId("67c2f41307676864f60a61b7")}, {$set:{title:"Fast and furious2"}})
+```
     -    To update multiple documents, use db.collection.updateMany().
-
+Use the `db.collection.updateMany()` to update all documents that match a specified filter.
     -    To replace a document, use db.collection.replaceOne().
+    To replace the entire content of a document except for the _id field, pass an entirely new document as the second argument to db.collection.replaceOne().
+
+## Delete Documents
+
+The MongoDB shell provides the following methods to delete documents from a collection:
+    -    To delete multiple documents, `use db.collection.deleteMany()`.
+To delete all documents from a collection, pass an empty filter document {} to the 
+```bash
+db.movies.deleteMany({})
+```
+If you want to delete all documents from a large collection, dropping with the db.collection.drop()
+Delete All Documents that Match a Condition
+`db.movies.deleteMany( { title: "Titanic" } )`
+    -    To delete a single document, `use db.collection.deleteOne()`.
+    To delete at most a single document that matches a specified filter (even though multiple documents may match the specified filter) use the db.collection.deleteOne() method.
+    ```bash
+    db.movies.deleteOne( { cast: "Brad Pitt" } )
+    ```
