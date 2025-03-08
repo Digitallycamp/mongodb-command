@@ -43,7 +43,7 @@ The MongoDB shell provides the following methods to insert documents into a coll
     - To insert a single document, use `db.collection.insertOne().`
     If the document does not specify an _id field, MongoDB adds the _id field with an ObjectId value to the new document.
     insertOne() returns a document that includes the newly inserted document's _id field value.
-    ```bach
+    ```bash
     db.movies.insertOne({title: "The lion king", year: 2018})
     ```
 
@@ -60,3 +60,28 @@ Use the db.collection.find() method in the MongoDB Shell to query documents in a
 -  Read All Documents in a Collection
 
 To read all documents in the collection, pass an empty document as the query filter parameter to the find method.
+```bash
+// swich to db : use <database>
+db.movies.find()
+```
+
+-    Specify Equality Condition
+  Lest you return all movies that their year is `2019`, to do this you will need to specify a condition as `{<field>:<value>}` in the `.find()` method's object
+
+```bash
+db.movies.find({<year>:<value>})
+that is : db.movies.find({year: 2019})
+```
+
+-    Specify Conditions Using Query Operators
+
+Use [query operators](https://www.mongodb.com/docs/manual/reference/operator/query/#query-selectors) in a query filter document to perform more complex comparisons and evaluations. Query operators in a query filter document have the following form:
+`{ <field1>: { <operator1>: <value1> }, ... }`
+```bash
+
+use <database>
+db.movies.find( { rated: { $in: [ "PG", "PG-13" ] } } )
+// his reads : return all movies from the <database> collection which are either `rated` `PG or PG-13`
+```
+The  Query Selectors are categoriesed into Comparison, Logical, Element, Evaluation, Geospatial, Array , Bitwise
+We also have Projection Operators, Miscellaneous Operators
