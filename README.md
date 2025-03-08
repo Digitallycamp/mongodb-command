@@ -85,3 +85,20 @@ db.movies.find( { rated: { $in: [ "PG", "PG-13" ] } } )
 ```
 The  Query Selectors are categoriesed into Comparison, Logical, Element, Evaluation, Geospatial, Array , Bitwise
 We also have Projection Operators, Miscellaneous Operators
+
+## Update Documents
+The MongoDB shell provides the following methods to update documents in a collection:
+
+    -    To update a single document, use db.collection.updateOne().
+    Update a Single Document
+Use the `db.collection.updateOne()` method to update the first document that matches a specified filter.
+```bash
+// Using the [Update operator](https://www.mongodb.com/docs/manual/reference/operator/update/). $set add the filed if it is noit there if it is there it will update the vslue
+ db.movies.updateOne({"title":"The lion king"}, {$set: {rating: 4}})
+```
+```bash
+db.movies.updateOne({"title":"Fast and furios"}, {$set:{title:"Fast and furious"}})
+```
+    -    To update multiple documents, use db.collection.updateMany().
+
+    -    To replace a document, use db.collection.replaceOne().
